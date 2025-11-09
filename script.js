@@ -46,19 +46,23 @@ export function reduce() {
 export function sortbylived() {
   return inventors.sort((a, b) => (b.passed - b.year) - (a.passed - a.year));
 }
-
 export function sortByLastName() {
   return people.sort((a, b) => {
-    const [aLast] = a.split(', ');
-    const [bLast] = b.split(', ');
-    return aLast.localeCompare(bLast);
+    const [aLast, aFirst] = a.split(', ');
+    const [bLast, bFirst] = b.split(', ');
+    return aLast > bLast ? 1 : -1;
   });
 }
 
 export function reducedSum() {
+  const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
+    'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
+
   return data.reduce((obj, item) => {
-    obj[item] = (obj[item] || 0) + 1;
+    if (!obj[item]) obj[item] = 0;
+    obj[item]++;
     return obj;
   }, {});
 }
+
 
